@@ -36,6 +36,7 @@ public class FFFixerImpl
         processors.add(new InnerClassOrderFixer(this));
         processors.add(new VariableNumberFixer(this));
         processors.add(new EnableStackTracesInLog(this));
+        processors.add(new VarNamer(this));
     }
 
     public static void process(String inFile, String outFile, String logFile) throws IOException
@@ -127,7 +128,8 @@ public class FFFixerImpl
             String[] extras = {
                 Type.getInternalName(Util.class) + ".class",
                 Type.getInternalName(Util.class) + "$1.class",
-                Type.getInternalName(Util.Indexed.class) + ".class"
+                Type.getInternalName(Util.Indexed.class) + ".class",
+                Type.getInternalName(VarHelper.class) + ".class"
             };
             for (String name : extras)
             {
